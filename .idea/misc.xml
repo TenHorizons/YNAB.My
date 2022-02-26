@@ -5,8 +5,12 @@
       <map>
         <entry key="..\:/Users/user/Documents/GitHub/YNAB.My/app/src/main/res/drawable/action_menu_foreground.xml" value="0.1" />
         <entry key="..\:/Users/user/Documents/GitHub/YNAB.My/app/src/main/res/layout/activity_main.xml" value="0.1796875" />
+        <entry key="..\:/Users/user/Documents/GitHub/YNAB.My/app/src/main/res/layout/bottom_nav.xml" value="0.1796875" />
+        <entry key="..\:/Users/user/Documents/GitHub/YNAB.My/app/src/main/res/layout/fragment_accounts.xml" value="0.1796875" />
+        <entry key="..\:/Users/user/Documents/GitHub/YNAB.My/app/src/main/res/layout/fragment_budget.xml" value="0.1796875" />
         <entry key="..\:/Users/user/Documents/GitHub/YNAB.My/app/src/main/res/layout/navigation_header.xml" value="0.1796875" />
         <entry key="..\:/Users/user/Documents/GitHub/YNAB.My/app/src/main/res/menu/action_bar_budget.xml" value="0.1796875" />
+        <entry key="..\:/Users/user/Documents/GitHub/YNAB.My/app/src/main/res/menu/bottom_nav_menu.xml" value="0.1796875" />
         <entry key="..\:/Users/user/Documents/GitHub/YNAB.My/app/src/main/res/menu/budget_action_bar.xml" value="0.1796875" />
       </map>
     </option>

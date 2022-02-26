@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:id="@+id/bottom_nav_budget"
+        android:title="@string/bottom_nav_budget"
+        android:icon="@drawable/bottom_nav_budget_foreground" />
+    <item android:id="@+id/bottom_nav_transaction"
+        android:title="@string/bottom_nav_transaction"
+        android:icon="@drawable/bottom_nav_transaction_foreground" />
+    <item android:id="@+id/bottom_nav_accounts"
+        android:title="@string/bottom_nav_accounts"
+        android:icon="@drawable/bottom_nav_accounts_foreground" />
+</menu>
