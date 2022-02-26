@@ -4,7 +4,7 @@
     <string name="action_settings_name">Settings</string>
     <string name="bottom_nav_budget">Budget</string>
     <string name="bottom_nav_accounts">Accounts</string>
-    <string name="bottom_nav_transaction">transaction</string>
+    <string name="bottom_nav_transaction">Transaction</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

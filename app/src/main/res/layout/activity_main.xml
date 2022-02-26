@@ -16,7 +16,7 @@
         android:id="@+id/budget_toolbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/primaryDarkColor"
+        android:background="@color/primaryColor"
         android:elevation="4dp"
         android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
         app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
@@ -27,6 +27,9 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:menu="@menu/bottom_nav_menu"/>
+        app:menu="@menu/bottom_nav_menu"
+        app:itemTextColor="@color/primaryTextColor"
+        app:itemIconTint="@color/primaryTextColor"
+        android:background="@color/primaryColor"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
