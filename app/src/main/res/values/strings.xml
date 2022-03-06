@@ -7,4 +7,21 @@
     <string name="bottom_nav_transaction">Transaction</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <string-array name="account_type">
+        <item>Budget Accounts - Checking</item>
+        <item>Budget Accounts - Savings</item>
+        <item>Budget Accounts - Cash</item>
+        <item>Budget Accounts - Credit Card</item>
+        <item>Budget Accounts - Line of Credit</item>
+        <item>Mortgage and Loans - Mortgage</item>
+        <item>Mortgage and Loans - Auto Loan</item>
+        <item>Mortgage and Loans - Student Loans</item>
+        <item>Mortgage and Loans - Personal Loans</item>
+        <item>Mortgage and Loans - Medical Debt</item>
+        <item>Mortgage and Loans - Other Debt</item>
+        <item>Tracking Accounts - Asset </item>
+        <item>Tracking Accounts - Liability </item>
+    </string-array>
+
 </resources>

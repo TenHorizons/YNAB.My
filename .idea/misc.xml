@@ -11,6 +11,9 @@
         <entry key="..\:/Github/YNAB/YNAB.My/app/src/main/res/drawable/bottom_nav_budget_foreground.xml" value="0.312" />
         <entry key="..\:/Github/YNAB/YNAB.My/app/src/main/res/drawable/bottom_nav_transaction_background.xml" value="0.312" />
         <entry key="..\:/Github/YNAB/YNAB.My/app/src/main/res/drawable/bottom_nav_transaction_foreground.xml" value="0.312" />
+        <entry key="..\:/Github/YNAB/YNAB.My/app/src/main/res/layout/activity_add_account.xml" value="0.30885416666666665" />
+        <entry key="..\:/Github/YNAB/YNAB.My/app/src/main/res/layout/activity_add_new_account.xml" value="0.30885416666666665" />
+        <entry key="..\:/Github/YNAB/YNAB.My/app/src/main/res/layout/activity_all_accounts.xml" value="0.2947916666666667" />
         <entry key="..\:/Github/YNAB/YNAB.My/app/src/main/res/layout/activity_main.xml" value="0.30885416666666665" />
         <entry key="..\:/Github/YNAB/YNAB.My/app/src/main/res/layout/fragment_accounts.xml" value="0.30885416666666665" />
         <entry key="..\:/Github/YNAB/YNAB.My/app/src/main/res/layout/fragment_bill.xml" value="0.4171875" />

@@ -19,6 +19,7 @@ import android.widget.Toast;
  */
 public class AccountsFragment extends Fragment {
     private Button allAccountBtn;
+    private Button addAccountBtn;
 
     public AccountsFragment() {
         super(R.layout.fragment_accounts);
@@ -49,9 +50,32 @@ public class AccountsFragment extends Fragment {
             public void onClick(View view) {
                 Log.d("xxx", "yyy");
                 Toast.makeText(getActivity(),"xxxxx", Toast.LENGTH_LONG).show();
-                //openNewActivity();
+                openAllAccountActivity();
             }
         });
+
+        addAccountBtn = view.findViewById(R.id.addAccount);
+        addAccountBtn.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View view) {
+                Log.d("xxx", "yyy");
+                Toast.makeText(getActivity(),"xxxxx", Toast.LENGTH_LONG).show();
+                openAddAccountActivity();
+            }
+        });
+
+
         return view;
+    }
+
+    public void openAddAccountActivity(){
+        Intent intent = new Intent(getActivity(), AddAccount.class);
+        startActivity(intent);
+    }
+
+    public void openAllAccountActivity(){
+        Intent intent = new Intent(getActivity(), AllAccounts.class);
+        startActivity(intent);
     }
 }

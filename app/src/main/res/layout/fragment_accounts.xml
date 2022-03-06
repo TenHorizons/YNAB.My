@@ -23,9 +23,9 @@
                 android:layout_height="wrap_content"
                 android:text="All Account"
                 android:gravity="left|center_vertical"
-                android:drawableRight="@android:drawable/arrow_up_float"
-                android:onClick="onClickBtn"
-                />
+                android:drawableRight="@android:drawable/arrow_up_float"/>
+<!--                android:onClick="onClickBtn"-->
+
 
             <TextView
                 android:id="@+id/text_view_id"
@@ -42,7 +42,7 @@
         <LinearLayout
             android:id="@+id/bottomLayout"
             android:layout_width="match_parent"
-            android:layout_height="45dp"
+            android:layout_height="48dp"
             android:orientation = "vertical"
             android:layout_toEndOf="@+id/topLayout"
             android:background="#C6CCCE">
@@ -52,8 +52,9 @@
                 android:layout_height="wrap_content"
                 android:gravity="left|center_vertical"
                 android:drawableRight="@android:drawable/arrow_up_float"
-                android:text="Add Account"
-                android:onClick="onClickBtn"/>
+                android:text="Add Account"/>
+<!--                android:onClick="onClickBtn"-->
+
 
         </LinearLayout >
     </LinearLayout >
