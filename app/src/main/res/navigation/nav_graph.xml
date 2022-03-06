@@ -10,10 +10,18 @@
         android:name="com.example.ynabmy.AccountsFragment"
         android:label="fragment_accounts"
         tools:layout="@layout/fragment_accounts" />
+
     <fragment
         android:id="@+id/budgetFragment"
         android:name="com.example.ynabmy.BudgetFragment"
         android:label="fragment_budget"
         tools:layout="@layout/fragment_budget" />
-    <fragment android:id="@+id/transactionsFragment" />
+
+    <fragment
+        android:id="@+id/transactionsFragment"
+        android:name="com.example.ynabmy.TransactionsFragment"
+        android:label="fragment_budget"
+        tools:layout="@layout/fragment_transactions" />
+
+
 </navigation>
