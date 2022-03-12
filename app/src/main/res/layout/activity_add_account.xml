@@ -57,6 +57,38 @@
             android:hint=""
             android:minHeight="48dp" />
 
+        <TextView
+            android:id="@+id/interest_rate_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Interest rate"
+            android:layout_margin="18dp"
+            tools:ignore="MissingConstraints" />
+
+        <EditText
+            android:id="@+id/interest_rate"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="phone"
+            android:hint=""
+            android:minHeight="48dp" />
+
+        <TextView
+            android:id="@+id/monthly_payment_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Monthly payment required by your lender?"
+            android:layout_margin="18dp"
+            tools:ignore="MissingConstraints" />
+
+        <EditText
+            android:id="@+id/monthly_payment"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="phone"
+            android:hint=""
+            android:minHeight="48dp" />
+
         <Button
             android:id="@+id/allAccount"
             android:layout_width="wrap_content"

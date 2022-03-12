@@ -12,34 +12,6 @@
         android:orientation = "vertical"
         >
         <LinearLayout
-            android:id="@+id/topLayout"
-            android:layout_width="match_parent"
-            android:layout_height="90dp"
-            android:orientation = "vertical"
-            android:background="#C6CCCE">
-            <Button
-                android:id="@+id/allAccount"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="All Account"
-                android:gravity="left|center_vertical"
-                android:drawableRight="@android:drawable/arrow_up_float"/>
-<!--                android:onClick="onClickBtn"-->
-
-
-            <TextView
-                android:id="@+id/text_view_id"
-                android:layout_height="40dp"
-                android:layout_width="match_parent"
-                android:textColor="#141415"
-                android:textSize="16dp"
-                android:gravity="center_vertical"
-                android:layout_toEndOf="@+id/allAccount"
-                android:paddingLeft="9dp"
-                android:text="Budget Accounts" />
-
-        </LinearLayout >
-        <LinearLayout
             android:id="@+id/bottomLayout"
             android:layout_width="match_parent"
             android:layout_height="48dp"
@@ -53,10 +25,78 @@
                 android:gravity="left|center_vertical"
                 android:drawableRight="@android:drawable/arrow_up_float"
                 android:text="Add Account"/>
-<!--                android:onClick="onClickBtn"-->
+            <!--                android:onClick="onClickBtn"-->
 
 
         </LinearLayout >
+        <LinearLayout
+            android:id="@+id/topLayout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation = "vertical"
+            android:background="#C6CCCE">
+            <Button
+                android:id="@+id/allAccount"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="All Account"
+                android:gravity="left|center_vertical"
+                android:drawableRight="@android:drawable/arrow_up_float"/>
+<!--                android:onClick="onClickBtn"-->
+
+            <TextView
+                android:id="@+id/text_view_id"
+                android:layout_height="40dp"
+                android:layout_width="match_parent"
+                android:textColor="#141415"
+                android:textSize="16dp"
+                android:gravity="center_vertical"
+                android:layout_toEndOf="@+id/allAccount"
+                android:paddingLeft="9dp"
+                android:text="Budget Accounts" />
+
+            <ListView
+                android:id="@+id/budget_listview"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" >
+            </ListView>
+
+            <TextView
+                android:id="@+id/text_view_id2"
+                android:layout_height="40dp"
+                android:layout_width="match_parent"
+                android:textColor="#141415"
+                android:textSize="16dp"
+                android:gravity="center_vertical"
+                android:layout_toEndOf="@+id/allAccount"
+                android:paddingLeft="9dp"
+                android:text="Loan Accounts" />
+
+            <ListView
+                android:id="@+id/loan_listview"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" >
+            </ListView>
+
+            <TextView
+                android:id="@+id/text_view_id3"
+                android:layout_height="40dp"
+                android:layout_width="match_parent"
+                android:textColor="#141415"
+                android:textSize="16dp"
+                android:gravity="center_vertical"
+                android:layout_toEndOf="@+id/allAccount"
+                android:paddingLeft="9dp"
+                android:text="Tracking Accounts" />
+
+            <ListView
+                android:id="@+id/tracking_listview"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" >
+            </ListView>
+
+        </LinearLayout >
+
     </LinearLayout >
 
 
