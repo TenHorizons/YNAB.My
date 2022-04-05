@@ -13,7 +13,7 @@
 
     <fragment
         android:id="@+id/budgetFragment"
-        android:name="com.example.ynabmy.BudgetFragment"
+        android:name="com.example.ynabmy.BudgetComponent.BudgetFragment"
         android:label="fragment_budget"
         tools:layout="@layout/fragment_budget" />
 
