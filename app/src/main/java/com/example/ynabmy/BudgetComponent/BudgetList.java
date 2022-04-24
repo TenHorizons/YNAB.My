@@ -1,9 +1,12 @@
 package com.example.ynabmy.BudgetComponent;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class BudgetList {
-    private List<String> budgetItems;
+    //Using ArrayList instead of LinkedList because get/set happens more than add/remove.
+    //Not sure about using Vector, assuming this isn't multi-threaded.
+    private List<String> budgetItems = new ArrayList<String>();
 
     public BudgetList(){}
     public BudgetList(List<String> budgetItems){

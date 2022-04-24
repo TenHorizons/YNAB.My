@@ -11,4 +11,10 @@
         android:layout_height="match_parent"
         android:text="transactions Fragment" />
 
+<!--    placeholder for toolbar id found in TransactinsFragment.-->
+    <androidx.appcompat.widget.Toolbar
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/toolbar"/>
+
 </FrameLayout>

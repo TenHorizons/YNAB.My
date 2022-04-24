@@ -3,7 +3,7 @@
     android:id="@+id/date_picker_button"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:text="//to show date of active budget"
+    android:text="@string/budget_date_picker"
     android:onClick="showDatePickerDialog">
 
 </Button>

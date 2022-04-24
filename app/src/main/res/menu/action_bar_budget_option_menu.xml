@@ -3,12 +3,19 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <item
+        android:id="@+id/budget_date_picker"
+        android:title="@string/budget_date_picker"
+        app:actionViewClass="android.widget.DatePicker"
+        android:actionLayout="@layout/fragment_date_picker"
+        app:showAsAction="always"/>
+    <item
         android:id="@+id/action_edit"
         android:icon="@drawable/action_edit_foreground"
         android:title="@string/action_edit_name"
         app:showAsAction="ifRoom"/>
     <item
         android:id="@+id/action_settings"
+        android:icon="@drawable/settings_foreground"
         android:title="@string/action_settings_name"
         app:showAsAction="never"/>
 
