@@ -15,8 +15,6 @@ import com.example.ynabmy.R;
 
 /**
  * A simple {@link Fragment} subclass.
- * Use the {@link BudgetFragment#newInstance} factory method to
- * create an instance of this fragment.
  */
 public class BudgetFragment extends Fragment {
     protected RecyclerView recyclerView;
@@ -65,9 +63,22 @@ public class BudgetFragment extends Fragment {
             String categoryName = getResources().getStringArray(R.array.Default_Budget_Category_Names)[i];
             BudgetCategory bc = new BudgetCategory(categoryName, 0, 0);
 
+            //get resources string.xml string array name using Category Name.
+            BudgetCategoriesAndItems items = new BudgetCategoriesAndItems();
+            int stringArrayName = items.getStringArrayNameUsingCategoryName(categoryName);
+
+            int numberOfItems = getResources().getStringArray(stringArrayName).length;
+            for(int j=0; j<numberOfItems; j++){
+                String itemName = getResources().getStringArray(stringArrayName)[j];
+                BudgetItem bi = new BudgetItem(itemName,0,0);
+                bc.addBudgetItem(bi);
+            }
+
             budget.addBudgetCategory(bc);
         }
     }
+
+    private getStringArrayNameUsingCategoryName
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,

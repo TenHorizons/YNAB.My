@@ -9,7 +9,7 @@ public class BudgetCategory {
     private double totalAssigned = -1;
     private double totalAvailable = -1;
 
-    public BudgetCategory(final String name,final int totalAssigned,final int totalAvailable){
+    public BudgetCategory(final String name, final int totalAssigned, final int totalAvailable) {
         this.categoryName = name;
         this.totalAssigned = totalAssigned;
         this.totalAvailable = totalAvailable;
@@ -22,6 +22,14 @@ public class BudgetCategory {
 
     public void setBudgetItems(List<BudgetItem> budgetItems) {
         this.budgetItems = budgetItems;
+    }
+
+    public void addBudgetItem(BudgetItem budgetItem) {
+        this.budgetItems.add(budgetItem);
+    }
+
+    public void removeBudgetItem(BudgetItem budgetItem){
+        this.budgetItems.remove(budgetItem);
     }
 
     public String getCategoryName() {
