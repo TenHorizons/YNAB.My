@@ -3,20 +3,24 @@ package com.example.ynabmy.BudgetComponent;
 import java.util.ArrayList;
 import java.util.List;
 
-public class BudgetCategories {
-    private List<BudgetItems> budgetItems = new ArrayList<>();
-    private String categoryName;
-    private double totalAssigned;
-    private double totalAvailable;
+public class BudgetCategory {
+    private List<BudgetItem> budgetItems = new ArrayList<>();
+    private String categoryName = "NAME_NULL";
+    private double totalAssigned = -1;
+    private double totalAvailable = -1;
 
-
+    public BudgetCategory(final String name,final int totalAssigned,final int totalAvailable){
+        this.categoryName = name;
+        this.totalAssigned = totalAssigned;
+        this.totalAvailable = totalAvailable;
+    }
 
     //getters and setters.
-    public List<BudgetItems> getBudgetItems() {
+    public List<BudgetItem> getBudgetItems() {
         return budgetItems;
     }
 
-    public void setBudgetItems(List<BudgetItems> budgetItems) {
+    public void setBudgetItems(List<BudgetItem> budgetItems) {
         this.budgetItems = budgetItems;
     }
 

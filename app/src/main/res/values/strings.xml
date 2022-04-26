@@ -6,6 +6,7 @@
     <string name="bottom_nav_accounts">Accounts</string>
     <string name="bottom_nav_transaction">Transaction</string>
     <string name="budget_date_picker">BudgetDatePicker</string>
+
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
 
@@ -23,6 +24,56 @@
         <item>Mortgage and Loans - Other Debt</item>
         <item>Tracking Accounts - Asset </item>
         <item>Tracking Accounts - Liability </item>
+    </string-array>
+
+    <string-array name="Default_Budget_Category_Names">
+        <item>Immediate Obligations</item>
+        <item>True Expenses</item>
+        <item>Debt Payments</item>
+        <item>Quality of Life goals</item>
+        <item>Just for Fun</item>
+    </string-array>
+
+    <string-array name="Immediate_Obligations_Default_Items">
+        <item>Groceries</item>
+        <item>Transportation</item>
+        <item>Internet</item>
+        <item>Utilities</item>
+        <item>Rent/Mortgage</item>
+        <item>Interest &amp; Fees</item>
+    </string-array>
+
+    <string-array name="True_Expenses_Default_Items">
+        <item>StashAway</item>
+        <item>TouchNGo</item>
+        <item>Auto Maintenance</item>
+        <item>Home Maintenance</item>
+        <item>Renter's/Home Insurance</item>
+        <item>Medical</item>
+        <item>Clothing</item>
+        <item>Gifts</item>
+        <item>Computer Replacement</item>
+        <item>Software Subscriptions Month</item>
+        <item>Stuff I Forgot to Budget For</item>
+    </string-array>
+
+    <string-array name="Debt_Payment_Default_Items">
+        <item>Student Loan</item>
+        <item>Auto Loan</item>
+    </string-array>
+
+    <string-array name="Quality_of_Life_Goals_Default_Items">
+        <item>Investments</item>
+        <item>Vacation</item>
+        <item>Fitness</item>
+        <item>Education</item>
+    </string-array>
+
+    <string-array name="Just_for_Fun_Default_Items">
+        <item>Dining Out</item>
+        <item>Gaming</item>
+        <item>Music</item>
+        <item>Fun Money</item>
     </string-array>
 
 </resources>

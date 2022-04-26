@@ -1,21 +1,14 @@
 package com.example.ynabmy.BudgetComponent;
 
-public class BudgetItems {
-    private String itemName;
-    private double assigned;
-    private double available;
+public class BudgetItem {
+    private String itemName = "NAME_NULL";
+    private double assigned = -1;
+    private double available = -1;
 
-    //constructor for when BudgetItems is initialized
-    public BudgetItems(){
-        this.itemName = "NAME_NULL";
-        this.assigned = 0;
-        this.available = 0;
-    }
-
-    public BudgetItems(final String itemName){
-        this.itemName = itemName;
-        this.assigned = 0;
-        this.available = 0;
+    public BudgetItem(final String name,final int assigned,final int available){
+        this.itemName = name;
+        this.assigned = assigned;
+        this.available = available;
     }
 
 

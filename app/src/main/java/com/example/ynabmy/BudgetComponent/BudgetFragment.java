@@ -4,7 +4,6 @@ import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
-import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.LayoutInflater;
@@ -13,8 +12,6 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.example.ynabmy.R;
-
-import java.util.List;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -25,6 +22,7 @@ public class BudgetFragment extends Fragment {
     protected RecyclerView recyclerView;
     protected RecyclerView.Adapter adapter;
     protected BudgetList budgetList = new BudgetList();
+    private Budget budget = new Budget();
 
     public BudgetFragment() {
         super(R.layout.fragment_budget);
@@ -32,11 +30,13 @@ public class BudgetFragment extends Fragment {
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
         private final TextView textView;
+
         public ViewHolder(View view) {
             super(view);
             // Define click listener for the ViewHolder's View
             textView = (TextView) view.findViewById(R.id.listview_item);
         }
+
         public TextView getTextView() {
             return textView;
         }
@@ -46,11 +46,26 @@ public class BudgetFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         createSampleList();
+        setupBudget();
     }
 
     private void createSampleList() {
-        for (int i=1;i<11;i++){
-            budgetList.addBudgetItem("Item "+i);
+        for (int i = 1; i < 11; i++) {
+            budgetList.addBudgetItem("Item " + i);
+        }
+    }
+
+    private void setupBudget(){
+        setupBudgetCategoriesAndItems();
+    }
+
+    private void setupBudgetCategoriesAndItems(){
+        int numberOfCategories = getResources().getStringArray(R.array.Default_Budget_Category_Names).length;
+        for(int i=0; i<numberOfCategories; i++){
+            String categoryName = getResources().getStringArray(R.array.Default_Budget_Category_Names)[i];
+            BudgetCategory bc = new BudgetCategory(categoryName, 0, 0);
+
+            budget.addBudgetCategory(bc);
         }
     }
 
@@ -64,7 +79,7 @@ public class BudgetFragment extends Fragment {
             @Override
             public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
                 View v = LayoutInflater.from(parent.getContext())
-                        .inflate(R.layout.listview_item,parent,false);
+                        .inflate(R.layout.listview_item, parent, false);
                 return new ViewHolder(v);
             }
 
