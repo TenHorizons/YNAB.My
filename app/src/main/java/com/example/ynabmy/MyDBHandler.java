@@ -253,9 +253,12 @@ public class MyDBHandler extends SQLiteOpenHelper {
         return budgets;
     }
 
-    public ArrayList<BudgetCategory> getAllBudgetCategories() {
+    public ArrayList<BudgetCategory> getBudgetCategoriesByBudgetId(final int budgetId) {
         ArrayList<BudgetCategory> categories = new ArrayList<BudgetCategory>();
-        Cursor c = getCursor(BUDGET_CATEGORY_TABLE);
+        String selectQuery = "SELECT  * FROM " + BUDGET_CATEGORY_TABLE + " WHERE "
+                + "budget_id = " + budgetId;
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor c = db.rawQuery(selectQuery, null);
 
         // looping through all rows and adding to list
         if (c.moveToFirst()) {
