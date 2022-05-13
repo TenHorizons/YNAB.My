@@ -9,11 +9,6 @@ public class BudgetCategory {
     private double totalAssigned = -1;
     private double totalAvailable = -1;
 
-    public BudgetCategory(final String name, final int totalAssigned, final int totalAvailable) {
-        this.categoryName = name;
-        this.totalAssigned = totalAssigned;
-        this.totalAvailable = totalAvailable;
-    }
 
     //getters and setters.
     public List<BudgetItem> getBudgetItems() {

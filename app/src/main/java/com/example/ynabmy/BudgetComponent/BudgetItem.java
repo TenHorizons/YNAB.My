@@ -5,12 +5,6 @@ public class BudgetItem {
     private double assigned = -1;
     private double available = -1;
 
-    public BudgetItem(final String name,final int assigned,final int available){
-        this.itemName = name;
-        this.assigned = assigned;
-        this.available = available;
-    }
-
 
     //getters and setters.
     public String getItemName() {
