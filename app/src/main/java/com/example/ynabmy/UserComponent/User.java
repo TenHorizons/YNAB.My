@@ -29,7 +29,7 @@ public class User {
 
     public String changeUsername (final String newUsername, final String password){
         if(this.password != password) return "Password is incorrect.";
-        this.username = username;
+        this.username = newUsername;
         return "Username successfully changed";
     }
 

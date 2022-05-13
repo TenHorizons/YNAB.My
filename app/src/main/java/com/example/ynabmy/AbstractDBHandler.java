@@ -45,6 +45,14 @@ public class AbstractDBHandler extends SQLiteOpenHelper {
         return id;
     }
 
+    /**Retrieves table rows
+     * filtered by table name*/
+    public Cursor getCursor(final String table){
+        SQLiteDatabase db = this.getReadableDatabase();
+        String selectQuery = "SELECT  * FROM " + table;
+        return db.rawQuery(selectQuery, null);
+    }
+
     /** Retrieves table row
      * filtered by table name and row id*/
     public Cursor getCursor(final long id, final String table){
@@ -61,10 +69,10 @@ public class AbstractDBHandler extends SQLiteOpenHelper {
     }
 
     /**Retrieves table rows
-     * filtered by table name*/
-    public Cursor getCursor(final String table){
-        String selectQuery = "SELECT  * FROM " + table;
+     * filtered by table, foreign key type, and foreign key.*/
+    public Cursor getCursor(final String table, final String foreignKeyType, final long foreignKey){
         SQLiteDatabase db = this.getReadableDatabase();
+        String selectQuery = "SELECT * FROM " + table + " WHERE " + foreignKeyType + " = " + foreignKey;
         return db.rawQuery(selectQuery, null);
     }
 

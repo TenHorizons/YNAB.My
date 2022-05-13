@@ -4,8 +4,10 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.util.Log;
 
 import com.example.ynabmy.AbstractDBHandler;
+import com.example.ynabmy.Account;
 
 import java.util.ArrayList;
 
@@ -18,6 +20,7 @@ public class BudgetDBHandler extends AbstractDBHandler {
 
     private static final String CREATE_TABLE_BUDGET =
             "CREATE TABLE " + BUDGET_TABLE + " (id INTEGER primary key autoincrement NOT NULL," +
+                    " user_id INTEGER," +
                     " budget_name TEXT)";
     private static final String CREATE_TABLE_BUDGET_CATEGORY =
             "CREATE TABLE " + BUDGET_CATEGORY_TABLE + " (id INTEGER primary key autoincrement NOT NULL," +
@@ -54,8 +57,9 @@ public class BudgetDBHandler extends AbstractDBHandler {
         onCreate(db);
     }
 
-    public long createBudget(final String budgetName) {
+    public long createBudget(final int userId, final String budgetName) {
         ContentValues values = new ContentValues();
+        values.put("user_id",userId);
         values.put("budget_name", budgetName);
 
         return super.createRow(values,BUDGET_TABLE);
@@ -95,6 +99,22 @@ public class BudgetDBHandler extends AbstractDBHandler {
         return budget;
     }
 
+    public ArrayList<Budget> getBudgetsByUser (final int userId){
+        ArrayList<Budget> budgets = new ArrayList<>();
+        Cursor c = super.getCursor(BUDGET_TABLE,"user_id",userId);
+
+        // looping through all rows and adding to list
+        if (c.moveToFirst()) {
+            do{
+                Budget budget = new Budget();
+                budget.setBudgetName(c.getString(c.getColumnIndexOrThrow("budget_name")));
+                budgets.add(budget);
+            }while(c.moveToNext());
+        }
+
+        return budgets;
+    }
+
     public BudgetCategory getBudgetCategory(long category_id) {
         Cursor c = super.getCursor(category_id,BUDGET_CATEGORY_TABLE);
 
@@ -104,6 +124,24 @@ public class BudgetDBHandler extends AbstractDBHandler {
         category.setTotalAvailable(c.getDouble(c.getColumnIndexOrThrow("total_available")));
 
         return category;
+    }
+
+    public ArrayList<BudgetCategory> getCategoriesByBudget (final int budgetId){
+        ArrayList<BudgetCategory> categories = new ArrayList<>();
+        Cursor c = super.getCursor(BUDGET_CATEGORY_TABLE,"budget_id",budgetId);
+
+        // looping through all rows and adding to list
+        if (c.moveToFirst()) {
+            do{
+                BudgetCategory category = new BudgetCategory();
+                category.setCategoryName(c.getString(c.getColumnIndexOrThrow("category_name")));
+                category.setTotalAssigned(c.getDouble(c.getColumnIndexOrThrow("total_assigned")));
+                category.setTotalAvailable(c.getDouble(c.getColumnIndexOrThrow("total_available")));
+                categories.add(category);
+            }while(c.moveToNext());
+        }
+
+        return categories;
     }
 
     public BudgetItem getBudgetItem(long item_id) {
@@ -117,47 +155,9 @@ public class BudgetDBHandler extends AbstractDBHandler {
         return item;
     }
 
-    public ArrayList<Budget> getAllBudgets() {
-        ArrayList<Budget> budgets = new ArrayList<Budget>();
-        Cursor c = super.getCursor(BUDGET_TABLE);
-
-        // looping through all rows and adding to list
-        if (c.moveToFirst()) {
-            do {
-                Budget budget = new Budget();
-                budget.setBudgetName(c.getString(c.getColumnIndexOrThrow("budget_name")));
-                budgets.add(budget);
-            } while (c.moveToNext());
-        }
-
-        return budgets;
-    }
-
-    public ArrayList<BudgetCategory> getBudgetCategoriesByBudgetId(final int budgetId) {
-        ArrayList<BudgetCategory> categories = new ArrayList<BudgetCategory>();
-        String selectQuery = "SELECT  * FROM " + BUDGET_CATEGORY_TABLE + " WHERE "
-                + "budget_id = " + budgetId;
-        SQLiteDatabase db = this.getReadableDatabase();
-        Cursor c = db.rawQuery(selectQuery, null);
-
-        // looping through all rows and adding to list
-        if (c.moveToFirst()) {
-            do {
-                BudgetCategory category = new BudgetCategory();
-                category.setCategoryName(c.getString(c.getColumnIndexOrThrow("category_name")));
-                category.setTotalAssigned(c.getDouble(c.getColumnIndexOrThrow("total_assigned")));
-                category.setTotalAvailable(c.getDouble(c.getColumnIndexOrThrow("total_available")));
-
-                categories.add(category);
-            } while (c.moveToNext());
-        }
-
-        return categories;
-    }
-
-    public ArrayList<BudgetItem> getAllBudgetItems() {
+    public ArrayList<BudgetItem> getBudgetItemsByCategory(final int categoryId) {
         ArrayList<BudgetItem> items = new ArrayList<BudgetItem>();
-        Cursor c = super.getCursor(BUDGET_ITEM_TABLE);
+        Cursor c = super.getCursor(BUDGET_ITEM_TABLE,"category_id",categoryId);
 
         // looping through all rows and adding to list
         if (c.moveToFirst()) {

@@ -1,6 +1,8 @@
 package com.example.ynabmy.UserComponent;
 
+import android.content.ContentValues;
 import android.content.Context;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
@@ -26,5 +28,22 @@ public class UserDBHandler extends AbstractDBHandler {
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         super.onUpgrade(db,USER_TABLE);
+    }
+
+    public long createUser(final String username, final String password){
+        ContentValues values = new ContentValues();
+        values.put("username", username);
+        values.put("password",password);
+
+        return super.createRow(values,USER_TABLE);
+    }
+
+    public User getUser(long user_id){
+        Cursor c = super.getCursor(user_id,USER_TABLE);
+
+        String username = c.getString(c.getColumnIndexOrThrow("username"));
+        String password = c.getString(c.getColumnIndexOrThrow("password"));
+
+        return new User(username,password);
     }
 }
