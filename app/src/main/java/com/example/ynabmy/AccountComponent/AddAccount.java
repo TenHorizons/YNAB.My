@@ -1,4 +1,4 @@
-package com.example.ynabmy;
+package com.example.ynabmy.AccountComponent;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -11,6 +11,9 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Spinner;
 import android.widget.Toast;
+
+import com.example.ynabmy.MainActivity;
+import com.example.ynabmy.R;
 
 public class AddAccount extends AppCompatActivity {
 
@@ -29,16 +32,12 @@ public class AddAccount extends AppCompatActivity {
         spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-                // Your code here
                 Object item = adapterView.getItemAtPosition(i);
                 if (item != null) {
-                    //Toast.makeText(getApplicationContext(), item.toString(), Toast.LENGTH_LONG).show();
                     String itemString = item.toString();
                     String[] parts = itemString.trim().split("-");
                     String budgetType = parts[0];
-                    //Toast.makeText(getApplicationContext(), budgetType, Toast.LENGTH_LONG).show();
                     if (budgetType.equals("Mortgage and Loans ")) {
-                        //Toast.makeText(getApplicationContext(), "MortgageandLoans", Toast.LENGTH_LONG).show();
                         TextView tv1 = (TextView)findViewById(R.id.interest_rate_text);
                         tv1.setVisibility(View.VISIBLE);
                         TextView tv2 = (TextView)findViewById(R.id.monthly_payment_text);
@@ -48,7 +47,6 @@ public class AddAccount extends AppCompatActivity {
                         EditText et2 = (EditText)findViewById(R.id.monthly_payment);
                         et2.setVisibility(View.VISIBLE);
                     } else {
-                        //Toast.makeText(getApplicationContext(), "Others", Toast.LENGTH_LONG).show();
                         TextView tv1 = (TextView)findViewById(R.id.interest_rate_text);
                         tv1.setVisibility(View.INVISIBLE);
                         TextView tv2 = (TextView)findViewById(R.id.monthly_payment_text);
@@ -79,9 +77,6 @@ public class AddAccount extends AppCompatActivity {
         EditText interest_rate = (EditText)findViewById(R.id.interest_rate);
         EditText monthly_payment = (EditText)findViewById(R.id.monthly_payment);
 
-//        Toast.makeText(getApplicationContext(),budget_type.getSelectedItem().toString() , Toast.LENGTH_LONG).show();
-//        Toast.makeText(getApplicationContext(),nickname.getText().toString() , Toast.LENGTH_LONG).show();
-
         Float interest_rate_f;
         Float monthly_payment_f;
         if (interest_rate.getText().toString().trim().isEmpty()) {
@@ -95,11 +90,6 @@ public class AddAccount extends AppCompatActivity {
         } else {
             monthly_payment_f = Float.parseFloat(monthly_payment.getText().toString());
         }
-
-//
-//        Toast.makeText(getApplicationContext(),account_balance.getText().toString() , Toast.LENGTH_LONG).show();
-//        Toast.makeText(getApplicationContext(),Float.toString(interest_rate_f) , Toast.LENGTH_LONG).show();
-//        Toast.makeText(getApplicationContext(),Float.toString(monthly_payment_f) , Toast.LENGTH_LONG).show();
 
         MyDBHandler db = new MyDBHandler(this);
         long account_id = db.createAccount(budget_type.getSelectedItem().toString(), nickname.getText().toString(), Float.parseFloat(account_balance.getText().toString()), interest_rate_f, monthly_payment_f);

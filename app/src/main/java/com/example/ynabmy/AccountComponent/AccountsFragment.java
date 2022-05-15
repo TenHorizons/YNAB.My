@@ -1,4 +1,4 @@
-package com.example.ynabmy;
+package com.example.ynabmy.AccountComponent;
 
 import android.os.Bundle;
 import android.content.Intent;
@@ -11,12 +11,10 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
-import android.widget.Toast;
 
-import java.lang.reflect.Method;
 import java.util.ArrayList;
-import java.util.List;
-import com.example.ynabmy.Account;
+
+import com.example.ynabmy.R;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -42,7 +40,6 @@ public class AccountsFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
     }
 
     @Override
@@ -52,7 +49,7 @@ public class AccountsFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_accounts, container, false);
 
         MyDBHandler db = new MyDBHandler(getActivity());
-//        List<com.example.ynabmy.Account> accounts = new ArrayList<Account>();
+//        List<com.example.ynabmy.AccountComponent.Account> accounts = new ArrayList<Account>();
         //accounts = db.getAllAccounts();
         ArrayList accounts = db.getAllAccounts();
         ArrayList <String>budgetAccounts = new ArrayList<String>();

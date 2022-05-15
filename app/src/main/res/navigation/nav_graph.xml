@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/accountsFragment"
-        android:name="com.example.ynabmy.AccountsFragment"
+        android:name="com.example.ynabmy.AccountComponent.AccountsFragment"
         android:label="fragment_accounts"
         tools:layout="@layout/fragment_accounts" />
 

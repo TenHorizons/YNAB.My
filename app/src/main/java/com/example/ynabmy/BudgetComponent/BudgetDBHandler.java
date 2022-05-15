@@ -4,10 +4,8 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
-import android.util.Log;
 
 import com.example.ynabmy.AbstractDBHandler;
-import com.example.ynabmy.Account;
 
 import java.util.ArrayList;
 
@@ -91,8 +89,10 @@ public class BudgetDBHandler extends AbstractDBHandler {
         return super.createRow(values,BUDGET_ITEM_TABLE);
     }
 
-    public Budget getBudget(long budget_id) {
+    protected Budget getBudget(long budget_id) {
         Cursor c = super.getCursor(budget_id,BUDGET_TABLE);
+
+        if(c==null) return null;
 
         Budget budget = new Budget();
         budget.setBudgetName(c.getString(c.getColumnIndexOrThrow("budget_name")));
@@ -102,6 +102,8 @@ public class BudgetDBHandler extends AbstractDBHandler {
     public ArrayList<Budget> getBudgetsByUser (final int userId){
         ArrayList<Budget> budgets = new ArrayList<>();
         Cursor c = super.getCursor(BUDGET_TABLE,"user_id",userId);
+
+        if(c==null) return null;
 
         // looping through all rows and adding to list
         if (c.moveToFirst()) {

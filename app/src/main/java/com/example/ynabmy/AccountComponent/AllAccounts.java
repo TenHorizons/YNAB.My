@@ -1,7 +1,9 @@
-package com.example.ynabmy;
+package com.example.ynabmy.AccountComponent;
 
 import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
+
+import com.example.ynabmy.R;
 
 public class AllAccounts extends AppCompatActivity {
 

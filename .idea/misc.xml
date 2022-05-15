@@ -23,11 +23,17 @@
         <entry key="..\:/Github/YNAB/YNAB.My/app/src/main/res/layout/listview_item.xml" value="0.30885416666666665" />
         <entry key="..\:/Github/YNAB/YNAB.My/app/src/main/res/menu/action_bar_budget.xml" value="0.30885416666666665" />
         <entry key="..\:/Github/YNAB/YNAB.My/app/src/main/res/menu/action_bar_budget_option.xml" value="0.21822916666666667" />
+        <entry key="..\:/Github/YNAB/YNAB.My/app/src/main/res/menu/action_bar_budget_option_menu.xml" value="0.1796875" />
         <entry key="..\:/Github/YNAB/YNAB.My/app/src/main/res/menu/bottom_nav_menu.xml" value="0.30885416666666665" />
         <entry key="..\:/Github/YNAB/YNAB.My/app/src/main/res/mipmap-anydpi-v26/bottom_nav_accounts.xml" value="0.312" />
         <entry key="..\:/Github/YNAB/YNAB.My/app/src/main/res/mipmap-anydpi-v26/bottom_nav_budget.xml" value="0.312" />
         <entry key="..\:/Github/YNAB/YNAB.My/app/src/main/res/mipmap-anydpi-v26/bottom_nav_transaction.xml" value="0.312" />
-        <entry key="..\:/Github/YNAB/YNAB.My/app/src/main/res/menu/action_bar_budget_option_menu.xml" value="0.1796875" />
+        <entry key="..\:/User/Documents/GitHub/YNAB.My/app/src/main/res/drawable/rounded_corcer_layout_background.xml" value="0.2225" />
+        <entry key="..\:/User/Documents/GitHub/YNAB.My/app/src/main/res/drawable/rounded_corner_layout_background.xml" value="0.2225" />
+        <entry key="..\:/User/Documents/GitHub/YNAB.My/app/src/main/res/layout/activity_add_account.xml" value="0.1" />
+        <entry key="..\:/User/Documents/GitHub/YNAB.My/app/src/main/res/layout/activity_all_accounts.xml" value="0.17831813576494426" />
+        <entry key="..\:/User/Documents/GitHub/YNAB.My/app/src/main/res/layout/activity_login.xml" value="0.36666666666666664" />
+        <entry key="..\:/User/Documents/GitHub/YNAB.My/app/src/main/res/layout/fragment_accounts.xml" value="0.33" />
       </map>
     </option>
   </component>

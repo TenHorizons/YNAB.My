@@ -1,4 +1,4 @@
-package com.example.ynabmy;
+package com.example.ynabmy.AccountComponent;
 
 public class Account
 {

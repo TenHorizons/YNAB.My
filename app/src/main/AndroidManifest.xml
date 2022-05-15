@@ -8,12 +8,19 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.Light.NoActionBar">
+
         <activity
-            android:name=".AddAccount"
-            android:exported="false" />
+            android:name=".LoginComponent.LoginActivity"
+            android:exported="false"/>
+
         <activity
-            android:name=".AllAccounts"
+            android:name=".AccountComponent.AddAccount"
             android:exported="false" />
+
+        <activity
+            android:name=".AccountComponent.AllAccounts"
+            android:exported="false" />
+
         <activity
             android:name=".MainActivity"
             android:exported="true">

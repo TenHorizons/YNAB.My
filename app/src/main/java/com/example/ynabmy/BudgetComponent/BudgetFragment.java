@@ -13,6 +13,8 @@ import android.widget.TextView;
 
 import com.example.ynabmy.R;
 
+import java.util.ArrayList;
+
 /**
  * A simple {@link Fragment} subclass.
  */
@@ -21,10 +23,7 @@ public class BudgetFragment extends Fragment {
     protected RecyclerView.Adapter adapter;
     protected BudgetList budgetList = new BudgetList();
     private Budget budget = new Budget();
-
-    public BudgetFragment() {
-        super(R.layout.fragment_budget);
-    }
+    BudgetDBHandler db = new BudgetDBHandler(getActivity());
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
         private final TextView textView;
@@ -40,11 +39,15 @@ public class BudgetFragment extends Fragment {
         }
     }
 
+    public BudgetFragment() {
+        super(R.layout.fragment_budget);
+    }
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         createSampleList();
-        setupBudget();
+//        setupBudget();
     }
 
     private void createSampleList() {
@@ -54,36 +57,28 @@ public class BudgetFragment extends Fragment {
     }
 
     private void setupBudget(){
-        setupBudgetCategoriesAndItems();
+        Budget budget = db.getBudget(0);
+        if(budget == null) loadDefaultBudget();
+        else loadBudget();
     }
 
-    private void setupBudgetCategoriesAndItems(){
-        int numberOfCategories = getResources().getStringArray(R.array.Default_Budget_Category_Names).length;
-        for(int i=0; i<numberOfCategories; i++){
-            String categoryName = getResources().getStringArray(R.array.Default_Budget_Category_Names)[i];
-            BudgetCategory bc = new BudgetCategory(categoryName, 0, 0);
+    private void loadDefaultBudget(){
 
-            //get resources string.xml string array name using Category Name.
-            BudgetCategoriesAndItems items = new BudgetCategoriesAndItems();
-            int stringArrayName = items.getStringArrayNameUsingCategoryName(categoryName);
-
-            int numberOfItems = getResources().getStringArray(stringArrayName).length;
-            for(int j=0; j<numberOfItems; j++){
-                String itemName = getResources().getStringArray(stringArrayName)[j];
-                BudgetItem bi = new BudgetItem(itemName,0,0);
-                bc.addBudgetItem(bi);
-            }
-
-            budget.addBudgetCategory(bc);
-        }
     }
 
-    private getStringArrayNameUsingCategoryName
+    private void loadBudget(){
+
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_budget, container, false);
+        setupRecycler(rootView);
+        return rootView;
+    }
+
+    private void setupRecycler(View rootView){
         recyclerView = (RecyclerView) rootView.findViewById(R.id.budget_recycler_view);
         adapter = new RecyclerView.Adapter() {
             @NonNull
@@ -106,6 +101,5 @@ public class BudgetFragment extends Fragment {
             }
         };
         recyclerView.setAdapter(adapter);
-        return rootView;
     }
 }

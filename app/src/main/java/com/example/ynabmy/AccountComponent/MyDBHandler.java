@@ -1,9 +1,12 @@
-package com.example.ynabmy;
+package com.example.ynabmy.AccountComponent;
 
 import android.database.sqlite.SQLiteDatabase;
 import android.content.Context;
 import android.content.ContentValues;
 import android.database.Cursor;
+
+import com.example.ynabmy.AbstractDBHandler;
+import com.example.ynabmy.AccountComponent.Account;
 
 import java.util.ArrayList;
 

@@ -13,21 +13,25 @@ public class AbstractDBHandler extends SQLiteOpenHelper {
     protected static final int DATABASE_VERSION = 1;
     protected static final String DATABASE_NAME = "ynabmy.db";
 
-    public AbstractDBHandler(final Context context) {
+    protected AbstractDBHandler(final Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
     }
 
     @Override
     public void onCreate(final SQLiteDatabase db) {}
 
-    public void onCreate(final SQLiteDatabase db, final String tableToCreate) {
+    protected void onCreate(final SQLiteDatabase db,
+                            final String tableToCreate) {
         db.execSQL(tableToCreate);
     }
 
     @Override
-    public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {}
+    public void onUpgrade(SQLiteDatabase db,
+                          int oldVersion,
+                          int newVersion) {}
 
-    public void onUpgrade(final SQLiteDatabase db, final String tableToUpgrade) {
+    public void onUpgrade(final SQLiteDatabase db,
+                          final String tableToUpgrade) {
         // on upgrade drop older tables
         db.execSQL("DROP TABLE IF EXISTS " + tableToUpgrade);
 
@@ -38,7 +42,8 @@ public class AbstractDBHandler extends SQLiteOpenHelper {
     /**Adds an object to a table as a row.
      * @param values The object to be added.
      * @param table The table to add the object.*/
-    public long createRow(final ContentValues values, final String table){
+    public long createRow(final ContentValues values,
+                          final String table){
         SQLiteDatabase db = this.getWritableDatabase();
         // insert row
         long id = db.insert(table, null, values);
@@ -47,7 +52,8 @@ public class AbstractDBHandler extends SQLiteOpenHelper {
 
     /**Retrieves table rows
      * filtered by table name*/
-    public Cursor getCursor(final String table){
+    protected Cursor getCursor(final String table){
+        if(checkIfTableEmpty(table))return null;
         SQLiteDatabase db = this.getReadableDatabase();
         String selectQuery = "SELECT  * FROM " + table;
         return db.rawQuery(selectQuery, null);
@@ -55,7 +61,9 @@ public class AbstractDBHandler extends SQLiteOpenHelper {
 
     /** Retrieves table row
      * filtered by table name and row id*/
-    public Cursor getCursor(final long id, final String table){
+    protected Cursor getCursor(final long id,
+                               final String table){
+        if(checkIfTableEmpty(table))return null;
         SQLiteDatabase db = this.getReadableDatabase();
         String selectQuery = "SELECT * FROM " + table + " WHERE " + "id = " + id;
         Cursor c = db.rawQuery(selectQuery, null);
@@ -70,10 +78,26 @@ public class AbstractDBHandler extends SQLiteOpenHelper {
 
     /**Retrieves table rows
      * filtered by table, foreign key type, and foreign key.*/
-    public Cursor getCursor(final String table, final String foreignKeyType, final long foreignKey){
+    protected Cursor getCursor(final String table,
+                               final String foreignKeyType,
+                               final long foreignKey){
+        if(checkIfTableEmpty(table))return null;
         SQLiteDatabase db = this.getReadableDatabase();
         String selectQuery = "SELECT * FROM " + table + " WHERE " + foreignKeyType + " = " + foreignKey;
         return db.rawQuery(selectQuery, null);
+    }
+
+    private boolean checkIfTableEmpty (final String table){
+        SQLiteDatabase db = this.getReadableDatabase();
+        String checkEmptyQuery = "SELECT COUNT(*) FROM " + table;
+        Cursor c = db.rawQuery(checkEmptyQuery,null);
+        if(c!=null){
+            c.moveToFirst();
+            if(c.getInt(0)==0){
+                return true;
+            }
+        }
+        return false;
     }
 
     // closing database
