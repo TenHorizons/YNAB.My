@@ -33,7 +33,10 @@
         <entry key="..\:/User/Documents/GitHub/YNAB.My/app/src/main/res/layout/activity_add_account.xml" value="0.1" />
         <entry key="..\:/User/Documents/GitHub/YNAB.My/app/src/main/res/layout/activity_all_accounts.xml" value="0.17831813576494426" />
         <entry key="..\:/User/Documents/GitHub/YNAB.My/app/src/main/res/layout/activity_login.xml" value="0.36666666666666664" />
+        <entry key="..\:/User/Documents/GitHub/YNAB.My/app/src/main/res/layout/activity_main.xml" value="0.20572916666666666" />
         <entry key="..\:/User/Documents/GitHub/YNAB.My/app/src/main/res/layout/fragment_accounts.xml" value="0.33" />
+        <entry key="..\:/User/Documents/GitHub/YNAB.My/app/src/main/res/layout/fragment_budget.xml" value="0.2791666666666667" />
+        <entry key="..\:/User/Documents/GitHub/YNAB.My/app/src/main/res/menu/bottom_nav_menu.xml" value="0.20572916666666666" />
       </map>
     </option>
   </component>

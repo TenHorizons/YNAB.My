@@ -11,56 +11,18 @@ import java.util.ArrayList;
 
 public class BudgetDBHandler extends AbstractDBHandler {
     private static final String TAG = "BudgetDBHandler";
-    //information of database
-    private static final String BUDGET_TABLE = "budget";
-    private static final String BUDGET_CATEGORY_TABLE = "budget_category";
-    private static final String BUDGET_ITEM_TABLE = "budget_item";
 
-    private static final String CREATE_TABLE_BUDGET =
-            "CREATE TABLE " + BUDGET_TABLE + " (id INTEGER primary key autoincrement NOT NULL," +
-                    " user_id INTEGER," +
-                    " budget_name TEXT)";
-    private static final String CREATE_TABLE_BUDGET_CATEGORY =
-            "CREATE TABLE " + BUDGET_CATEGORY_TABLE + " (id INTEGER primary key autoincrement NOT NULL," +
-                    " budgetId INTEGER," +
-                    " categoryName TEXT," +
-                    " totalAssigned DOUBLE," +
-                    " totalAvailable DOUBLE)";
-    private static final String CREATE_TABLE_BUDGET_ITEM =
-            "CREATE TABLE " + BUDGET_ITEM_TABLE + " (id INTEGER primary key autoincrement NOT NULL," +
-                    " categoryId INTEGER," +
-                    " itemName TEXT," +
-                    " assigned DOUBLE," +
-                    " available DOUBLE)";
-
-    public BudgetDBHandler(Context context) {
+    protected BudgetDBHandler(Context context) {
         super(context);
     }
 
-    @Override
-    public void onCreate(SQLiteDatabase db) {
-        db.execSQL(CREATE_TABLE_BUDGET);
-        db.execSQL(CREATE_TABLE_BUDGET_CATEGORY);
-        db.execSQL(CREATE_TABLE_BUDGET_ITEM);
-    }
-
-    @Override
-    public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-        // on upgrade drop older tables
-        db.execSQL("DROP TABLE IF EXISTS " + BUDGET_TABLE);
-        db.execSQL("DROP TABLE IF EXISTS " + BUDGET_CATEGORY_TABLE);
-        db.execSQL("DROP TABLE IF EXISTS " + BUDGET_ITEM_TABLE);
-
-        // create new tables
-        onCreate(db);
-    }
 
     public long createBudget(final int userId, final String budgetName) {
         ContentValues values = new ContentValues();
         values.put("user_id",userId);
         values.put("budget_name", budgetName);
 
-        return super.createRow(values,BUDGET_TABLE);
+        return super.createRow(values,super.BUDGET_TABLE);
     }
 
     public long createBudgetCategory(final int budgetId,
@@ -73,7 +35,7 @@ public class BudgetDBHandler extends AbstractDBHandler {
         values.put("total_assigned", totalAssigned);
         values.put("total_available", totalAvailable);
 
-        return super.createRow(values,BUDGET_CATEGORY_TABLE);
+        return super.createRow(values,super.BUDGET_CATEGORY_TABLE);
     }
 
     public long createBudgetItem(final int categoryId,
@@ -86,11 +48,11 @@ public class BudgetDBHandler extends AbstractDBHandler {
         values.put("assigned", assigned);
         values.put("available", available);
 
-        return super.createRow(values,BUDGET_ITEM_TABLE);
+        return super.createRow(values,super.BUDGET_ITEM_TABLE);
     }
 
     protected Budget getBudget(long budget_id) {
-        Cursor c = super.getCursor(budget_id,BUDGET_TABLE);
+        Cursor c = super.getCursor(budget_id,super.BUDGET_TABLE);
 
         if(c==null) return null;
 
@@ -101,7 +63,7 @@ public class BudgetDBHandler extends AbstractDBHandler {
 
     public ArrayList<Budget> getBudgetsByUser (final int userId){
         ArrayList<Budget> budgets = new ArrayList<>();
-        Cursor c = super.getCursor(BUDGET_TABLE,"user_id",userId);
+        Cursor c = super.getCursor(super.BUDGET_TABLE,"user_id",userId);
 
         if(c==null) return null;
 
@@ -118,7 +80,7 @@ public class BudgetDBHandler extends AbstractDBHandler {
     }
 
     public BudgetCategory getBudgetCategory(long category_id) {
-        Cursor c = super.getCursor(category_id,BUDGET_CATEGORY_TABLE);
+        Cursor c = super.getCursor(category_id,super.BUDGET_CATEGORY_TABLE);
 
         BudgetCategory category = new BudgetCategory();
         category.setCategoryName(c.getString(c.getColumnIndexOrThrow("category_name")));
@@ -130,7 +92,7 @@ public class BudgetDBHandler extends AbstractDBHandler {
 
     public ArrayList<BudgetCategory> getCategoriesByBudget (final int budgetId){
         ArrayList<BudgetCategory> categories = new ArrayList<>();
-        Cursor c = super.getCursor(BUDGET_CATEGORY_TABLE,"budget_id",budgetId);
+        Cursor c = super.getCursor(super.BUDGET_CATEGORY_TABLE,"budget_id",budgetId);
 
         // looping through all rows and adding to list
         if (c.moveToFirst()) {
@@ -147,7 +109,7 @@ public class BudgetDBHandler extends AbstractDBHandler {
     }
 
     public BudgetItem getBudgetItem(long item_id) {
-        Cursor c = super.getCursor(item_id,BUDGET_ITEM_TABLE);
+        Cursor c = super.getCursor(item_id,super.BUDGET_ITEM_TABLE);
 
         BudgetItem item = new BudgetItem();
         item.setItemName(c.getString(c.getColumnIndexOrThrow("item_name")));
@@ -159,7 +121,7 @@ public class BudgetDBHandler extends AbstractDBHandler {
 
     public ArrayList<BudgetItem> getBudgetItemsByCategory(final int categoryId) {
         ArrayList<BudgetItem> items = new ArrayList<BudgetItem>();
-        Cursor c = super.getCursor(BUDGET_ITEM_TABLE,"category_id",categoryId);
+        Cursor c = super.getCursor(super.BUDGET_ITEM_TABLE,"category_id",categoryId);
 
         // looping through all rows and adding to list
         if (c.moveToFirst()) {

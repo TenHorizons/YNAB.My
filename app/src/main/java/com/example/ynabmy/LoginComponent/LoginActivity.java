@@ -9,10 +9,7 @@ import android.widget.TextView;
 
 import com.example.ynabmy.MainActivity;
 import com.example.ynabmy.R;
-import com.example.ynabmy.UserComponent.User;
 import com.example.ynabmy.UserComponent.UserDBHandler;
-
-import java.util.ArrayList;
 
 public class LoginActivity extends AppCompatActivity {
     @Override
@@ -22,14 +19,14 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     public void checkLoginDetails(View view) {
-        UserDBHandler db = new UserDBHandler(this);
+        UserDBHandler db = (UserDBHandler) MainActivity.db;
         String username = ((TextView)findViewById(R.id.usernameTxt)).getText().toString();
         String password = ((TextView)findViewById(R.id.passwordTxt)).getText().toString();
-        if(db.checkUser(username,password)){
-            int userId = db.getUser(username,password,this);
+        if(db.checkUser(username,password) != -1){
+            int userId = db.getUser(username,password);
             if(userId != -1){
                 Intent intent = new Intent(this, MainActivity.class);
-                intent.putExtra("user",userId);
+                intent.putExtra("userId",userId);
                 startActivity(intent);
             }
 

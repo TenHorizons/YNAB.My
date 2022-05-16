@@ -14,6 +14,7 @@ import android.widget.ListView;
 
 import java.util.ArrayList;
 
+import com.example.ynabmy.MainActivity;
 import com.example.ynabmy.R;
 
 /**
@@ -48,7 +49,8 @@ public class AccountsFragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_accounts, container, false);
 
-        MyDBHandler db = new MyDBHandler(getActivity());
+//        AccountDBHandler db = new AccountDBHandler(getActivity());
+        AccountDBHandler db = (AccountDBHandler) MainActivity.db;
 //        List<com.example.ynabmy.AccountComponent.Account> accounts = new ArrayList<Account>();
         //accounts = db.getAllAccounts();
         ArrayList accounts = db.getAllAccounts();

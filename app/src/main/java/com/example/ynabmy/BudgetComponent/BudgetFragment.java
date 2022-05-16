@@ -19,11 +19,13 @@ import java.util.ArrayList;
  * A simple {@link Fragment} subclass.
  */
 public class BudgetFragment extends Fragment {
+    private static final String TAG = "BudgetFragment";
     protected RecyclerView recyclerView;
     protected RecyclerView.Adapter adapter;
     protected BudgetList budgetList = new BudgetList();
     private Budget budget = new Budget();
     BudgetDBHandler db = new BudgetDBHandler(getActivity());
+    private int userId = -1;
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
         private final TextView textView;
@@ -73,6 +75,9 @@ public class BudgetFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+//        Bundle bundle = requireActivity().getIntent().getExtras();
+//        userId = bundle.getInt("userId");
+        userId = 0; //default 0 for now until dtabase fixed
         View rootView = inflater.inflate(R.layout.fragment_budget, container, false);
         setupRecycler(rootView);
         return rootView;

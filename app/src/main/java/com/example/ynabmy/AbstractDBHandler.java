@@ -13,12 +13,53 @@ public class AbstractDBHandler extends SQLiteOpenHelper {
     protected static final int DATABASE_VERSION = 1;
     protected static final String DATABASE_NAME = "ynabmy.db";
 
+    /**All strings and queries for database creation.*/
+    protected static final String ACCOUNT_TABLE = "accounts";
+    protected static final String BUDGET_TABLE = "budget";
+    protected static final String BUDGET_CATEGORY_TABLE = "budget_category";
+    protected static final String BUDGET_ITEM_TABLE = "budget_item";
+    protected static final String USER_TABLE = "user";
+
+    private static final String CREATE_TABLE_ACCOUNTS =
+            "CREATE TABLE " + ACCOUNT_TABLE + " (id INTEGER primary key autoincrement NOT NULL," +
+                    " budget_type TEXT," +
+                    " nickname TEXT," +
+                    " balance FLOAT," +
+                    " interest_rate FLOAT," +
+                    " monthly_payment FLOAT)";
+    private static final String CREATE_TABLE_BUDGET =
+            "CREATE TABLE " + BUDGET_TABLE + " (id INTEGER primary key autoincrement NOT NULL," +
+                    " user_id INTEGER," +
+                    " budget_name TEXT)";
+    private static final String CREATE_TABLE_BUDGET_CATEGORY =
+            "CREATE TABLE " + BUDGET_CATEGORY_TABLE + " (id INTEGER primary key autoincrement NOT NULL," +
+                    " budgetId INTEGER," +
+                    " categoryName TEXT," +
+                    " totalAssigned DOUBLE," +
+                    " totalAvailable DOUBLE)";
+    private static final String CREATE_TABLE_BUDGET_ITEM =
+            "CREATE TABLE " + BUDGET_ITEM_TABLE + " (id INTEGER primary key autoincrement NOT NULL," +
+                    " categoryId INTEGER," +
+                    " itemName TEXT," +
+                    " assigned DOUBLE," +
+                    " available DOUBLE)";
+    private static final String CREATE_TABLE_USER =
+            "CREATE TABLE " + USER_TABLE + " (id INTEGER primary key autoincrement NOT NULL," +
+                    " username TEXT," +
+                    " password TEXT)";
+
     protected AbstractDBHandler(final Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
     }
 
     @Override
-    public void onCreate(final SQLiteDatabase db) {}
+    public void onCreate(final SQLiteDatabase db) {
+        db.execSQL(CREATE_TABLE_ACCOUNTS);
+        db.execSQL(CREATE_TABLE_BUDGET);
+        db.execSQL(CREATE_TABLE_BUDGET_CATEGORY);
+        db.execSQL(CREATE_TABLE_BUDGET_ITEM);
+        db.execSQL(CREATE_TABLE_USER);
+    }
 
     protected void onCreate(final SQLiteDatabase db,
                             final String tableToCreate) {
@@ -28,7 +69,17 @@ public class AbstractDBHandler extends SQLiteOpenHelper {
     @Override
     public void onUpgrade(SQLiteDatabase db,
                           int oldVersion,
-                          int newVersion) {}
+                          int newVersion) {
+        // on upgrade drop older tables
+        db.execSQL("DROP TABLE IF EXISTS " + ACCOUNT_TABLE);
+        db.execSQL("DROP TABLE IF EXISTS " + BUDGET_TABLE);
+        db.execSQL("DROP TABLE IF EXISTS " + BUDGET_CATEGORY_TABLE);
+        db.execSQL("DROP TABLE IF EXISTS " + BUDGET_ITEM_TABLE);
+        db.execSQL("DROP TABLE IF EXISTS " + USER_TABLE);
+
+        // create new tables
+        onCreate(db);
+    }
 
     public void onUpgrade(final SQLiteDatabase db,
                           final String tableToUpgrade) {
@@ -53,7 +104,6 @@ public class AbstractDBHandler extends SQLiteOpenHelper {
     /**Retrieves table rows
      * filtered by table name*/
     protected Cursor getCursor(final String table){
-        if(checkIfTableEmpty(table))return null;
         SQLiteDatabase db = this.getReadableDatabase();
         String selectQuery = "SELECT  * FROM " + table;
         return db.rawQuery(selectQuery, null);
@@ -63,7 +113,6 @@ public class AbstractDBHandler extends SQLiteOpenHelper {
      * filtered by table name and row id*/
     protected Cursor getCursor(final long id,
                                final String table){
-        if(checkIfTableEmpty(table))return null;
         SQLiteDatabase db = this.getReadableDatabase();
         String selectQuery = "SELECT * FROM " + table + " WHERE " + "id = " + id;
         Cursor c = db.rawQuery(selectQuery, null);
@@ -81,23 +130,17 @@ public class AbstractDBHandler extends SQLiteOpenHelper {
     protected Cursor getCursor(final String table,
                                final String foreignKeyType,
                                final long foreignKey){
-        if(checkIfTableEmpty(table))return null;
         SQLiteDatabase db = this.getReadableDatabase();
         String selectQuery = "SELECT * FROM " + table + " WHERE " + foreignKeyType + " = " + foreignKey;
         return db.rawQuery(selectQuery, null);
     }
 
-    private boolean checkIfTableEmpty (final String table){
-        SQLiteDatabase db = this.getReadableDatabase();
-        String checkEmptyQuery = "SELECT COUNT(*) FROM " + table;
-        Cursor c = db.rawQuery(checkEmptyQuery,null);
-        if(c!=null){
-            c.moveToFirst();
-            if(c.getInt(0)==0){
-                return true;
-            }
-        }
-        return false;
+    public void createDefaultAdmin() {
+        ContentValues values = new ContentValues();
+        values.put("username", "admin");
+        values.put("password", "admin");
+
+        createRow(values,USER_TABLE);
     }
 
     // closing database

@@ -10,30 +10,10 @@ import com.example.ynabmy.AccountComponent.Account;
 
 import java.util.ArrayList;
 
-public class MyDBHandler extends AbstractDBHandler {
-    //information of database
-    private static final String ACCOUNT_TABLE = "accounts";
+public class AccountDBHandler extends AbstractDBHandler {
 
-    private static final String CREATE_TABLE_ACCOUNTS =
-            "CREATE TABLE " + ACCOUNT_TABLE + " (id INTEGER primary key autoincrement NOT NULL," +
-                    " budget_type TEXT," +
-                    " nickname TEXT," +
-                    " balance FLOAT," +
-                    " interest_rate FLOAT," +
-                    " monthly_payment FLOAT)";
-
-    public MyDBHandler(Context context) {
+    protected AccountDBHandler(Context context) {
         super(context);
-    }
-
-    @Override
-    public void onCreate(SQLiteDatabase db) {
-        db.execSQL(CREATE_TABLE_ACCOUNTS);
-    }
-
-    @Override
-    public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-        super.onUpgrade(db,ACCOUNT_TABLE);
     }
 
     public long createAccount(final String budget_type,
@@ -48,12 +28,12 @@ public class MyDBHandler extends AbstractDBHandler {
         values.put("interest_rate", interest_rate);
         values.put("monthly_payment", monthly_payment);
 
-        return super.createRow(values,ACCOUNT_TABLE);
+        return super.createRow(values,super.ACCOUNT_TABLE);
     }
 
     /**Get single item of table.*/
     public Account getAccount(long account_id) {
-        Cursor c = super.getCursor(account_id,ACCOUNT_TABLE);
+        Cursor c = super.getCursor(account_id,super.ACCOUNT_TABLE);
 
         Account acc = new Account();
         acc.setAccount( c.getInt(c.getColumnIndexOrThrow("id")),
@@ -69,7 +49,7 @@ public class MyDBHandler extends AbstractDBHandler {
 
     public ArrayList<Account> getAllAccounts() {
         ArrayList<Account> accounts = new ArrayList<Account>();
-        Cursor c = super.getCursor(ACCOUNT_TABLE);
+        Cursor c = super.getCursor(super.ACCOUNT_TABLE);
 
         // looping through all rows and adding to list
         if (c.moveToFirst()) {

@@ -91,7 +91,7 @@ public class AddAccount extends AppCompatActivity {
             monthly_payment_f = Float.parseFloat(monthly_payment.getText().toString());
         }
 
-        MyDBHandler db = new MyDBHandler(this);
+        AccountDBHandler db = new AccountDBHandler(this);
         long account_id = db.createAccount(budget_type.getSelectedItem().toString(), nickname.getText().toString(), Float.parseFloat(account_balance.getText().toString()), interest_rate_f, monthly_payment_f);
         if (account_id > -1) {
             Toast.makeText(getApplicationContext(), "Budget added successfully , row Id = " + Long.toString(account_id), Toast.LENGTH_LONG).show();
